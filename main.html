@@ -1,0 +1,94 @@
+<html>
+    <head>
+        <title> </title>
+        <center> <h1>Tagihan Listrik</h1> </center>
+        <center> <h2>PT.Once Sejahtera</h2> </center>
+        
+        <link rel="stylesheet" type="text/css" href="style.css">
+      
+    </head>
+    <body>
+        
+            <img  src="download.jpg" style="display:block; margin:auto;"><br/>
+          <table style="margin-left:auto; margin-right:auto" border="1">
+            <tr>
+                <th>
+                    <label for="customer">Nama Pelanggan:</label>
+                </th>
+                <th>
+                    <input type="text" id="customer"><br><br>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label for="angka">Banyak Pemakaian:</label>
+                </th>
+                <th>
+                    <input type="angka" id="pemakaian"><br><br>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <label for="text">Kategori:</label>
+                </th>
+                <th>
+            <select name="kategori" id="kategori">
+                <option value="sosial">Sosial</option>
+                <option value="rumah">Rumah</option>
+                <option value="apartmen">Apartmen</option>
+                <option value="industri">Industri</option>
+                <option value="villa">Villa</option>
+            </th>
+            </tr>
+            </table>
+
+        </select>
+        <center><button onclick="myFunction()">Submit</button><center>
+        <div id="result"></div>
+
+        <script>
+            var arrays = [];
+            arrays['sosial'] = {kategori:"Sosial", abodemen:10000, tarif:300, pajak:0};
+            arrays['rumah'] = {kategori:"Rumah", abodemen:30000, tarif:500, pajak:0.1};
+            arrays['apartmen'] = {kategori:"Apartmen", abodemen:50000, tarif:750, pajak:0.15};
+            arrays['industri'] = {kategori:"Industri", abodemen:75000, tarif:1000, pajak:0.2};
+            arrays['villa'] = {kategori:"Villa", abodemen:100000, tarif:1250, pajak:0.25};
+
+            function myFunction() {
+                var nama = document.getElementById("customer").value;
+                var hari = document.getElementById("pemakaian").value;
+                var kategori = document.getElementById("kategori").value;
+                var data = arrays[kategori];
+                var subtotal = (hari*data.tarif)+data.abodemen
+                var pajak = (subtotal*data.pajak)
+                var bayar = subtotal+pajak
+                var html = "<table class='table-zebra-striping'>";
+                    html+="<tr>";
+                    html+="<td>Jumlah</td>";
+                    html+="<td>Tarif per KWH</td>";
+                    html+="<td>Abodemen</td>";
+                    html+="<td>Subtotal</td>";
+                    html+="</tr>";
+
+                if  (hari>30){
+                    alert("Hari tidak valid")
+                } else{
+                for (let index = 1; index <= hari; index++) {
+                    html+= "<tr>";
+                    html+= "<td>"+index+"</td>";
+                    html+= "<td>"+data.tarif*index+"</td>";
+                    html+= "<td>"+data.abodemen+"</td>";
+                    html+= "<td>"+(data.abodemen+(data.tarif*index))+"</td>";
+                    html+= "</tr>";
+                }
+                html+= "<tr><td colspan='4'> subtotal: "+subtotal+"</td></tr>";
+                html+= "<tr><td colspan='4'> pajak: "+pajak+"</td></tr>";
+                html+= "<tr><td colspan='4'> bayar: "+bayar+"</td></tr>";
+                html+= "</table>";
+
+                document.getElementById("result").innerHTML=html
+            }}
+
+        </script>
+    </body>
+</html>

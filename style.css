@@ -1,0 +1,29 @@
+.table-zebra-striping {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-zebra-striping th {
+    background: #36cee9;
+    color: #FFFFFF;
+    padding: 1em;
+    text-align: left;
+    text-transform: uppercase;
+}
+html, body {
+    width: 100%;
+}
+
+.table-zebra-striping td {
+    border-bottom: 1px solid #ddd;
+    padding: 1em;
+}
+
+.table-zebra-striping tr:nth-child(even) {
+    background: #E6E6FA;
+}
+
+.table-zebra-striping tr:nth-child(odd) {
+    background: #FFF8DC;
+}
+
